@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	tests	# perform "make test"
+%bcond_with	MQ	# build MQ subpackage (require commercial software to use)
 #
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	SOAP
@@ -10,7 +11,7 @@ Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.60a
 %define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
@@ -127,10 +128,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/SOAP::Transport::[FHILPT]*
 %{_mandir}/man3/SOAP::Transport::MAILTO*
 
+%if %{with MQ}
 %files MQ
 %defattr(644,root,root,755)
 %{perl_vendorlib}/SOAP/Transport/MQ.pm
 %{_mandir}/man3/*::MQ.*
+%endif
 
 %files JABBER
 %defattr(644,root,root,755)
