@@ -8,12 +8,13 @@
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
-Version:	0.55
-Release:	5
+Version:	0.60a
+%define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
+Release:	1
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	77618ef6822aa10eaa8770cc20f0d794
+# Source0-md5:	aed9f8e9c4cf180d15c6e15aedc484d7
 URL:		http://www.soaplite.com/
 %if %{with tests}
 # this list is probably incomplete
@@ -79,7 +80,7 @@ Examples for SOAP::Lite.
 Przyk³ady u¿ycia SOAP::Lite.
 
 %prep
-%setup -q -n %{pdir}-%{pnam}-%{version}
+%setup -q -n %{pdir}-%{pnam}-%{real_version}
 %{__chmod} u+rw . -R
 
 %build
