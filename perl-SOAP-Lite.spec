@@ -11,7 +11,8 @@ Name:		perl-SOAP-Lite
 Version:	0.60a
 %define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
 Release:	1
-License:	GPL/Artistic
+# same as perl
+License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	aed9f8e9c4cf180d15c6e15aedc484d7
@@ -96,7 +97,6 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
 cp -ar examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
