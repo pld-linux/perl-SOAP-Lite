@@ -8,7 +8,7 @@ Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.55
-Release:	2
+Release:	3
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.zip
@@ -21,13 +21,13 @@ BuildRequires:	perl-Compress-Zlib
 BuildRequires:	perl-Crypt-SSLeay
 BuildRequires:	perl-FCGI
 BuildRequires:	perl-IO-Socket-SSL
+BuildRequires:	perl-libnet
+BuildRequires:	perl-libwww
 BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-MIME-Lite
 BuildRequires:	perl-MIME-tools
 BuildRequires:	perl-Net-Jabber
 BuildRequires:	perl-URI
-BuildRequires:	perl-libnet
-BuildRequires:	perl-libwww
 %endif
 BuildRequires:	rpm-perlprov >= 3.0.3-26
 BuildArch:	noarch
@@ -43,16 +43,38 @@ SOAP::Lite to zestaw modu³ów Perla udostêpniaj±cych prosty i lekki
 interfejs do protoko³u SOAP (Simple Object Access Protocol) zarówno
 po stronie klienta, jak i serwera.
 
+%package JABBER
+Summary:	Net::Jabber support for SOAP::Lite
+Summary(pl):	Obs³uga Net::Jabber dla SOAP::Lite
+Group:		Development/Languages/Perl
+
+%description JABBER
+JABBER transport support for SOAP::Lite (SOAP::Transport::JABBER).
+
+%description JABBER -l pl
+Obs³uga transportu JABBER dla SOAP::Lite (SOAP::Transport::JABBER).
+
+%package MQ
+Summary:	MQ transport support for SOAP::Lite (SOAP::Transport::MQ)
+Summary(pl):	Obs³uga transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
+Group:		Development/Languages/Perl
+
+%description MQ
+MQ transport support for SOAP::Lite (SOAP::Transport::MQ).
+
+%description MQ -l pl
+Obs³uga transportu MQ dla SOAP::Lite (SOAP::Transport::MQ).
+
 %package examples
 Summary:	SOAP::Lite - examples
-Summary(pl):	Przyk³ady do SOAP::Lite
+Summary(pl):	Przyk³ady u¿ycia SOAP::Lite
 Group:		Development/Languages/Perl
 
 %description examples
 Examples for SOAP::Lite.
 
 %description examples -l pl
-Przyk³ady do SOAP::Lite.
+Przyk³ady u¿ycia SOAP::Lite.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
@@ -83,7 +105,8 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitelib}/Apache/XMLRPC/*.pm
 %{perl_sitelib}/IO/*.pm
 %{perl_sitelib}/SOAP/*.pm
-%{perl_sitelib}/SOAP/Transport/*.pm
+%{perl_sitelib}/SOAP/Transport/[FHILPT]*.pm
+%{perl_sitelib}/SOAP/Transport/MAILTO.pm
 %dir %{perl_sitelib}/UDDI
 %{perl_sitelib}/UDDI/*.pm
 %{perl_sitelib}/XML/Parser/*.pm
@@ -91,7 +114,23 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitelib}/XMLRPC/*.pm
 %dir %{perl_sitelib}/XMLRPC/Transport
 %{perl_sitelib}/XMLRPC/Transport/*.pm
-%{_mandir}/man3/*
+%{_mandir}/man3/Apache*
+%{_mandir}/man3/UDDI*
+%{_mandir}/man3/XML*
+%{_mandir}/man3/SOAP::Lite*
+%{_mandir}/man3/SOAP::Test*
+%{_mandir}/man3/SOAP::Transport::[FHILPT]*
+%{_mandir}/man3/SOAP::Transport::MAILTO*
+
+%files MQ
+%defattr(644,root,root,755)
+%{perl_sitelib}/SOAP/Transport/MQ.pm
+%{_mandir}/man3/*::MQ.*
+
+%files JABBER
+%defattr(644,root,root,755)
+%{perl_sitelib}/SOAP/Transport/JABBER.pm
+%{_mandir}/man3/*JABBER*
 
 %files examples
 %defattr(644,root,root,755)
