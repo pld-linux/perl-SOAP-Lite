@@ -8,7 +8,7 @@ Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.55
-Release:	3
+Release:	4
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.zip
@@ -29,7 +29,7 @@ BuildRequires:	perl-MIME-tools
 BuildRequires:	perl-Net-Jabber
 BuildRequires:	perl-URI
 %endif
-BuildRequires:	rpm-perlprov >= 3.0.3-26
+BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -81,7 +81,8 @@ Przyk³ady u¿ycia SOAP::Lite.
 %{__chmod} u+rw . -R
 
 %build
-%{__perl} -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")'
+%{__perl} -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")' \
+	INSTALLDIRS=vendor
 %{__make}
 
 %{?_with_tests:%{__make} test}
@@ -100,20 +101,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_sitelib}/Apache/*.pm
-%dir %{perl_sitelib}/Apache/XMLRPC
-%{perl_sitelib}/Apache/XMLRPC/*.pm
-%{perl_sitelib}/IO/*.pm
-%{perl_sitelib}/SOAP/*.pm
-%{perl_sitelib}/SOAP/Transport/[FHILPT]*.pm
-%{perl_sitelib}/SOAP/Transport/MAILTO.pm
-%dir %{perl_sitelib}/UDDI
-%{perl_sitelib}/UDDI/*.pm
-%{perl_sitelib}/XML/Parser/*.pm
-%dir %{perl_sitelib}/XMLRPC
-%{perl_sitelib}/XMLRPC/*.pm
-%dir %{perl_sitelib}/XMLRPC/Transport
-%{perl_sitelib}/XMLRPC/Transport/*.pm
+%{perl_vendorlib}/Apache/*.pm
+%dir %{perl_vendorlib}/Apache/XMLRPC
+%{perl_vendorlib}/Apache/XMLRPC/*.pm
+%{perl_vendorlib}/IO/*.pm
+%{perl_vendorlib}/SOAP/*.pm
+%{perl_vendorlib}/SOAP/Transport/[FHILPT]*.pm
+%{perl_vendorlib}/SOAP/Transport/MAILTO.pm
+%dir %{perl_vendorlib}/UDDI
+%{perl_vendorlib}/UDDI/*.pm
+%{perl_vendorlib}/XML/Parser/*.pm
+%dir %{perl_vendorlib}/XMLRPC
+%{perl_vendorlib}/XMLRPC/*.pm
+%dir %{perl_vendorlib}/XMLRPC/Transport
+%{perl_vendorlib}/XMLRPC/Transport/*.pm
 %{_mandir}/man3/Apache*
 %{_mandir}/man3/UDDI*
 %{_mandir}/man3/XML*
@@ -124,12 +125,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files MQ
 %defattr(644,root,root,755)
-%{perl_sitelib}/SOAP/Transport/MQ.pm
+%{perl_vendorlib}/SOAP/Transport/MQ.pm
 %{_mandir}/man3/*::MQ.*
 
 %files JABBER
 %defattr(644,root,root,755)
-%{perl_sitelib}/SOAP/Transport/JABBER.pm
+%{perl_vendorlib}/SOAP/Transport/JABBER.pm
 %{_mandir}/man3/*JABBER*
 
 %files examples
