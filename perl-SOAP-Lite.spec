@@ -1,6 +1,7 @@
 #
 # Conditional build:
-# _with_tests - perform "make test"
+# _with_tests	- perform "make test"
+#
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	SOAP
 %define	pnam	Lite
@@ -8,12 +9,12 @@ Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.55
-Release:	3
+Release:	4
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.zip
+Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	77618ef6822aa10eaa8770cc20f0d794
 URL:		http://www.soaplite.com/
-BuildRequires:	perl >= 5.6
 %if %{?_with_tests:1}%{!?_with_tests:0}
 # this list is probably incomplete
 BuildRequires:	apache-mod_perl
@@ -29,6 +30,7 @@ BuildRequires:	perl-MIME-tools
 BuildRequires:	perl-Net-Jabber
 BuildRequires:	perl-URI
 %endif
+BuildRequires:	perl-devel >= 5.6
 BuildRequires:	rpm-perlprov >= 4.0.2-104
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -88,10 +90,11 @@ Przyk³ady u¿ycia SOAP::Lite.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
 cp -ar examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
