@@ -4,8 +4,8 @@
 %bcond_with	MQ	# build MQ subpackage (require commercial software to use)
 #
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	SOAP
-%define	pnam	Lite
+%define		pdir	SOAP
+%define		pnam	Lite
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
