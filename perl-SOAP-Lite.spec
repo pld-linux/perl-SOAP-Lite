@@ -1,6 +1,7 @@
 #
 # Conditional build:
-# _with_tests	- perform "make test"
+%bcond_with	tests	# perform "make test"
+#
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	SOAP
 %define	pnam	Lite
@@ -14,7 +15,7 @@ Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	77618ef6822aa10eaa8770cc20f0d794
 URL:		http://www.soaplite.com/
-%if %{?_with_tests:1}%{!?_with_tests:0}
+%if %{with tests}
 # this list is probably incomplete
 BuildRequires:	apache-mod_perl
 BuildRequires:	perl-Compress-Zlib
@@ -86,7 +87,7 @@ Przyk³ady u¿ycia SOAP::Lite.
 	INSTALLDIRS=vendor
 %{__make}
 
-%{?_with_tests:%{__make} test}
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
