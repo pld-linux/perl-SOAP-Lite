@@ -81,7 +81,7 @@ Przyk³ady u¿ycia SOAP::Lite.
 %{__chmod} u+rw . -R
 
 %build
-perl -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")'
+%{__perl} -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")'
 %{__make}
 
 %{?_with_tests:%{__make} test}
