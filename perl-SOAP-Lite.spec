@@ -11,7 +11,7 @@ Version:	0.55
 Release:	3
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
-Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.zip
+Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.zip
 URL:		http://www.soaplite.com/
 BuildRequires:	perl >= 5.6
 %if %{?_with_tests:1}%{!?_with_tests:0}
