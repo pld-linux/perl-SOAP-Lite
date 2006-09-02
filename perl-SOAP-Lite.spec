@@ -6,11 +6,11 @@
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	SOAP
 %define		pnam	Lite
+%define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.60a
-%define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
 Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
@@ -25,13 +25,13 @@ BuildRequires:	perl-Compress-Zlib
 BuildRequires:	perl-Crypt-SSLeay
 BuildRequires:	perl-FCGI
 BuildRequires:	perl-IO-Socket-SSL
-BuildRequires:	perl-libnet
-BuildRequires:	perl-libwww
 BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-MIME-Lite
 BuildRequires:	perl-MIME-tools
 BuildRequires:	perl-Net-Jabber
 BuildRequires:	perl-URI
+BuildRequires:	perl-libnet
+BuildRequires:	perl-libwww
 %endif
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -45,8 +45,8 @@ on client and server side.
 
 %description -l pl
 SOAP::Lite to zestaw modu³ów Perla udostêpniaj±cych prosty i lekki
-interfejs do protoko³u SOAP (Simple Object Access Protocol) zarówno
-po stronie klienta, jak i serwera.
+interfejs do protoko³u SOAP (Simple Object Access Protocol) zarówno po
+stronie klienta, jak i serwera.
 
 %package JABBER
 Summary:	Net::Jabber support for SOAP::Lite
@@ -98,7 +98,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-cp -ar examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
