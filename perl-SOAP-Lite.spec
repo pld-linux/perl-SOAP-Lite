@@ -1,4 +1,6 @@
 #
+# TOGO: package new files
+#
 # Conditional build:
 %bcond_with	tests	# perform "make test"
 %bcond_with	MQ	# build MQ subpackage (require commercial software to use)
@@ -10,13 +12,13 @@
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
-Version:	0.60a
-Release:	2
+Version:	0.69
+Release:	0.1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	aed9f8e9c4cf180d15c6e15aedc484d7
+# Source0-md5:	24e0c656a6a7047c91f7f3f3b5c36513
 URL:		http://www.soaplite.com/
 %if %{with tests}
 # this list is probably incomplete
@@ -126,7 +128,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/SOAP::Lite*
 %{_mandir}/man3/SOAP::Test*
 %{_mandir}/man3/SOAP::Transport::[FHILPT]*
-%{_mandir}/man3/SOAP::Transport::MAILTO*
 
 %if %{with MQ}
 %files MQ
