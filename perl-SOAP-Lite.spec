@@ -10,7 +10,7 @@
 %define		pnam	Lite
 %define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
 Summary:	SOAP::Lite - Client and server side SOAP implementation
-Summary(pl):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
+Summary(pl.UTF-8):   SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.69
 Release:	0.1
@@ -45,43 +45,43 @@ SOAP::Lite is a collection of Perl modules which provides a simple and
 lightweight interface to the Simple Object Access Protocol (SOAP) both
 on client and server side.
 
-%description -l pl
-SOAP::Lite to zestaw modu≥Ûw Perla udostÍpniaj±cych prosty i lekki
-interfejs do protoko≥u SOAP (Simple Object Access Protocol) zarÛwno po
+%description -l pl.UTF-8
+SOAP::Lite to zestaw modu≈Ç√≥w Perla udostƒôpniajƒÖcych prosty i lekki
+interfejs do protoko≈Çu SOAP (Simple Object Access Protocol) zar√≥wno po
 stronie klienta, jak i serwera.
 
 %package JABBER
 Summary:	Net::Jabber support for SOAP::Lite
-Summary(pl):	Obs≥uga Net::Jabber dla SOAP::Lite
+Summary(pl.UTF-8):   Obs≈Çuga Net::Jabber dla SOAP::Lite
 Group:		Development/Languages/Perl
 
 %description JABBER
 JABBER transport support for SOAP::Lite (SOAP::Transport::JABBER).
 
-%description JABBER -l pl
-Obs≥uga transportu JABBER dla SOAP::Lite (SOAP::Transport::JABBER).
+%description JABBER -l pl.UTF-8
+Obs≈Çuga transportu JABBER dla SOAP::Lite (SOAP::Transport::JABBER).
 
 %package MQ
 Summary:	MQ transport support for SOAP::Lite (SOAP::Transport::MQ)
-Summary(pl):	Obs≥uga transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
+Summary(pl.UTF-8):   Obs≈Çuga transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
 Group:		Development/Languages/Perl
 
 %description MQ
 MQ transport support for SOAP::Lite (SOAP::Transport::MQ).
 
-%description MQ -l pl
-Obs≥uga transportu MQ dla SOAP::Lite (SOAP::Transport::MQ).
+%description MQ -l pl.UTF-8
+Obs≈Çuga transportu MQ dla SOAP::Lite (SOAP::Transport::MQ).
 
 %package examples
 Summary:	SOAP::Lite - examples
-Summary(pl):	Przyk≥ady uøycia SOAP::Lite
+Summary(pl.UTF-8):   Przyk≈Çady u≈ºycia SOAP::Lite
 Group:		Development/Languages/Perl
 
 %description examples
 Examples for SOAP::Lite.
 
-%description examples -l pl
-Przyk≥ady uøycia SOAP::Lite.
+%description examples -l pl.UTF-8
+Przyk≈Çady u≈ºycia SOAP::Lite.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{real_version}
