@@ -10,7 +10,7 @@
 %define		pnam	Lite
 %define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
 Summary:	SOAP::Lite - Client and server side SOAP implementation
-Summary(pl.UTF-8):   SOAP::Lite - implementacja SOAP po stronie klienta i serwera
+Summary(pl.UTF-8):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.69
 Release:	0.1
@@ -52,7 +52,7 @@ stronie klienta, jak i serwera.
 
 %package JABBER
 Summary:	Net::Jabber support for SOAP::Lite
-Summary(pl.UTF-8):   Obsługa Net::Jabber dla SOAP::Lite
+Summary(pl.UTF-8):	Obsługa Net::Jabber dla SOAP::Lite
 Group:		Development/Languages/Perl
 
 %description JABBER
@@ -63,7 +63,7 @@ Obsługa transportu JABBER dla SOAP::Lite (SOAP::Transport::JABBER).
 
 %package MQ
 Summary:	MQ transport support for SOAP::Lite (SOAP::Transport::MQ)
-Summary(pl.UTF-8):   Obsługa transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
+Summary(pl.UTF-8):	Obsługa transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
 Group:		Development/Languages/Perl
 
 %description MQ
@@ -74,7 +74,7 @@ Obsługa transportu MQ dla SOAP::Lite (SOAP::Transport::MQ).
 
 %package examples
 Summary:	SOAP::Lite - examples
-Summary(pl.UTF-8):   Przykłady użycia SOAP::Lite
+Summary(pl.UTF-8):	Przykłady użycia SOAP::Lite
 Group:		Development/Languages/Perl
 
 %description examples
