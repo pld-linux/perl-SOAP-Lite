@@ -17,7 +17,7 @@ Release:	0.1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://downloads.sourceforge.net/soaplite/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/soaplite/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	7e66fab942b527d4ddb573874e639110
 URL:		http://www.soaplite.com/
 %if %{with tests}
