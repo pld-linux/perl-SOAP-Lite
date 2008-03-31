@@ -85,7 +85,6 @@ Przykłady użycia SOAP::Lite.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{real_version}
-%{__chmod} u+rw . -R
 
 %build
 %{__perl} -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")' \
@@ -101,6 +100,13 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+# don't package .pod
+rm -f $RPM_BUILD_ROOT%{perl_vendorlib}/SOAP/*.pod
+
+# don't package OldDocs
+rm -f $RPM_BUILD_ROOT%{_mandir}/man3/OldDocs::*
+rm -rf $RPM_BUILD_ROOT%{perl_vendorlib}/OldDocs
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -118,8 +124,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorlib}/SOAP/Lite/Deserializer
 %{perl_vendorlib}/SOAP/Lite/Deserializer/*.pm
 %dir %{perl_vendorlib}/SOAP/Transport
-%{perl_vendorlib}/SOAP/Transport/[FHILPT]*.pm
-%{perl_vendorlib}/SOAP/Transport/MAILTO.pm
+%{perl_vendorlib}/SOAP/Transport/*.pm
+%exclude %{perl_vendorlib}/SOAP/Transport/JABBER.pm
+%exclude %{perl_vendorlib}/SOAP/Transport/MQ.pm
 %dir %{perl_vendorlib}/UDDI
 %{perl_vendorlib}/UDDI/*.pm
 %{perl_vendorlib}/XML/Parser/*.pm
@@ -131,6 +138,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/UDDI*
 %{_mandir}/man3/XML*
 %{_mandir}/man3/SOAP*
+%if %{with MQ}
+%exclude %{_mandir}/man3/*::MQ.*
+%endif
 
 %if %{with MQ}
 %files MQ
@@ -142,7 +152,6 @@ rm -rf $RPM_BUILD_ROOT
 %files JABBER
 %defattr(644,root,root,755)
 %{perl_vendorlib}/SOAP/Transport/JABBER.pm
-%{_mandir}/man3/*JABBER*
 
 %files examples
 %defattr(644,root,root,755)
