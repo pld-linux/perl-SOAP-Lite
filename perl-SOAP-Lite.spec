@@ -1,5 +1,5 @@
 #
-# TOGO: package new files
+# TODO: package new files
 #
 # Conditional build:
 %bcond_with	tests	# perform "make test"
@@ -12,13 +12,13 @@
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl.UTF-8):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
-Version:	0.70_04
-Release:	0.1
+Version:	0.71
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://dl.sourceforge.net/soaplite/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	7e66fab942b527d4ddb573874e639110
+# Source0-md5:	82f1cb7f544a21f813ef9eb2a103f899
 URL:		http://www.soaplite.com/
 %if %{with tests}
 # this list is probably incomplete
@@ -113,6 +113,11 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/Apache/XMLRPC/*.pm
 %{perl_vendorlib}/IO/*.pm
 %{perl_vendorlib}/SOAP/*.pm
+%dir %{perl_vendorlib}/SOAP/Lite
+%{perl_vendorlib}/SOAP/Lite/*.pm
+%dir %{perl_vendorlib}/SOAP/Lite/Deserializer
+%{perl_vendorlib}/SOAP/Lite/Deserializer/*.pm
+%dir %{perl_vendorlib}/SOAP/Transport
 %{perl_vendorlib}/SOAP/Transport/[FHILPT]*.pm
 %{perl_vendorlib}/SOAP/Transport/MAILTO.pm
 %dir %{perl_vendorlib}/UDDI
@@ -125,9 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/Apache*
 %{_mandir}/man3/UDDI*
 %{_mandir}/man3/XML*
-%{_mandir}/man3/SOAP::Lite*
-%{_mandir}/man3/SOAP::Test*
-%{_mandir}/man3/SOAP::Transport::[FHILPT]*
+%{_mandir}/man3/SOAP*
 
 %if %{with MQ}
 %files MQ
