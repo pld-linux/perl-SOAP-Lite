@@ -55,12 +55,16 @@ stronie klienta, jak i serwera.
 
 %package HTTP
 Summary:	HTTP transport support for SOAP::Lite
+Summary(pl.UTF-8):	Obsługa transportu HTTP dla SOAP::Lite
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{version}-%{release}
 Requires:	perl-libwww
 
 %description HTTP
 HTTP transport support for SOAP::Lite (SOAP::Transport::HTTP).
+
+%description HTTP -l pl.UTF-8
+Obsługa transportu HTTP dla SOAP::Lite (SOAP::Transport::HTTP).
 
 %package JABBER
 Summary:	Net::Jabber support for SOAP::Lite
