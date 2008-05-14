@@ -2,6 +2,7 @@
 # - package new files (---????)
 # - seems broken:
 #   Subroutine LWP::UserAgent::redirect_ok redefined at /usr/share/perl5/vendor_perl/SOAP/Transport/HTTP.pm line 41.
+#   http://groups.google.com/group/linux.debian.bugs.dist/browse_thread/thread/c1808cff6a5b90a0/971d98754aba2db7
 #
 # Conditional build:
 %bcond_with	tests	# perform "make test"
