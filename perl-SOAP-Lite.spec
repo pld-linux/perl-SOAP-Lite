@@ -1,5 +1,7 @@
-#
-# TODO: package new files
+# TODO
+# - package new files (---????)
+# - seems broken:
+#   Subroutine LWP::UserAgent::redirect_ok redefined at /usr/share/perl5/vendor_perl/SOAP/Transport/HTTP.pm line 41.
 #
 # Conditional build:
 %bcond_with	tests	# perform "make test"
@@ -13,7 +15,7 @@ Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl.UTF-8):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.71
-Release:	1
+Release:	0.2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
@@ -50,10 +52,20 @@ SOAP::Lite to zestaw modułów Perla udostępniających prosty i lekki
 interfejs do protokołu SOAP (Simple Object Access Protocol) zarówno po
 stronie klienta, jak i serwera.
 
+%package HTTP
+Summary:	HTTP transport support for SOAP::Lite
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}-%{release}
+Requires:	perl-libwww
+
+%description HTTP
+HTTP transport support for SOAP::Lite (SOAP::Transport::HTTP).
+
 %package JABBER
 Summary:	Net::Jabber support for SOAP::Lite
 Summary(pl.UTF-8):	Obsługa Net::Jabber dla SOAP::Lite
 Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}-%{release}
 
 %description JABBER
 JABBER transport support for SOAP::Lite (SOAP::Transport::JABBER).
@@ -65,6 +77,7 @@ Obsługa transportu JABBER dla SOAP::Lite (SOAP::Transport::JABBER).
 Summary:	MQ transport support for SOAP::Lite (SOAP::Transport::MQ)
 Summary(pl.UTF-8):	Obsługa transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
 Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}-%{release}
 
 %description MQ
 MQ transport support for SOAP::Lite (SOAP::Transport::MQ).
@@ -127,6 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/SOAP/Transport/*.pm
 %exclude %{perl_vendorlib}/SOAP/Transport/JABBER.pm
 %exclude %{perl_vendorlib}/SOAP/Transport/MQ.pm
+%exclude %{perl_vendorlib}/SOAP/Transport/HTTP.pm
 %dir %{perl_vendorlib}/UDDI
 %{perl_vendorlib}/UDDI/*.pm
 %{perl_vendorlib}/XML/Parser/*.pm
@@ -141,6 +155,10 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with MQ}
 %exclude %{_mandir}/man3/*::MQ.*
 %endif
+
+%files HTTP
+%defattr(644,root,root,755)
+%{perl_vendorlib}/SOAP/Transport/HTTP.pm
 
 %if %{with MQ}
 %files MQ
