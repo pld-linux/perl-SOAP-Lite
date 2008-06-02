@@ -1,9 +1,3 @@
-# TODO
-# - package new files (---????)
-# - seems broken:
-#   Subroutine LWP::UserAgent::redirect_ok redefined at /usr/share/perl5/vendor_perl/SOAP/Transport/HTTP.pm line 41.
-#   http://groups.google.com/group/linux.debian.bugs.dist/browse_thread/thread/c1808cff6a5b90a0/971d98754aba2db7
-#
 # Conditional build:
 %bcond_with	tests	# perform "make test"
 %bcond_with	MQ	# build MQ subpackage (require commercial software to use)
@@ -16,12 +10,13 @@ Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl.UTF-8):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
 Version:	0.71
-Release:	0.2
+Release:	0.4
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://dl.sourceforge.net/soaplite/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	82f1cb7f544a21f813ef9eb2a103f899
+Patch0:		%{name}-warnings.patch
 URL:		http://www.soaplite.com/
 %if %{with tests}
 # this list is probably incomplete
@@ -42,6 +37,9 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# optional
+%define		_noautoreq	'perl(SOAP::Transport::HTTP)'
 
 %description
 SOAP::Lite is a collection of Perl modules which provides a simple and
@@ -103,6 +101,7 @@ Przykłady użycia SOAP::Lite.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{real_version}
+%patch0 -p1
 
 %build
 %{__perl} -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")' \
