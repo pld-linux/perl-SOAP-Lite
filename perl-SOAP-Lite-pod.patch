@@ -1,0 +1,10 @@
+--- SOAP-Lite-0.71/lib/SOAP/Lite.pm~	2008-02-28 23:27:27.000000000 +0200
++++ SOAP-Lite-0.71/lib/SOAP/Lite.pm	2008-06-05 12:33:31.827683476 +0300
+@@ -4225,6 +4225,7 @@
+ the following code:
+ 
+     $client->on_action( sub { join '/', @_ } );
++
+ =item on_fault(callback)
+ 
+     $client->on_fault(sub { popup_dialog($_[1]) });
