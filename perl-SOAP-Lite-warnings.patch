@@ -1,18 +1,18 @@
-patch with help from
-http://groups.google.com/group/linux.debian.bugs.dist/browse_thread/thread/c1808cff6a5b90a0/971d98754aba2db7
-
---- SOAP-Lite-0.71/lib/SOAP/Transport/HTTP.pm~	2008-06-02 18:28:30.000000000 +0300
-+++ SOAP-Lite-0.71/lib/SOAP/Transport/HTTP.pm	2008-06-02 18:28:31.914669508 +0300
-@@ -37,10 +37,12 @@
+--- SOAP-Lite-0.710.10/lib/SOAP/Transport/HTTP.pm.orig	2009-10-09 14:36:37.000000000 +0200
++++ SOAP-Lite-0.710.10/lib/SOAP/Transport/HTTP.pm	2009-09-30 20:34:59.000000000 +0200
+@@ -38,13 +38,14 @@
      return if $_patched;
      BEGIN { local ($^W) = 0; }
      {
-+		no warnings "redefine";
-         sub LWP::UserAgent::redirect_ok; *LWP::UserAgent::redirect_ok = sub {1}
++        no warnings "redefine";
+         local $^W = 0;
+         sub LWP::UserAgent::redirect_ok;
+         *LWP::UserAgent::redirect_ok = sub { 1 }
      }
      {
+-
          package LWP::Protocol;
-+		no warnings "redefine";
-         my $collect = \&collect; # store original
++        no warnings "redefine";
+         local $^W = 0;
+         my $collect = \&collect;    # store original
          *collect = sub {
-             if (defined $_[2]->header('Connection')
