@@ -1,6 +1,5 @@
 # Conditional build:
 %bcond_with	tests	# perform "make test"
-%bcond_with	MQ	# build MQ subpackage (require commercial software to use)
 #
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	SOAP
@@ -9,13 +8,13 @@
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl.UTF-8):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
-Version:	0.710.10
+Version:	0.712
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://search.cpan.org/CPAN/authors/id/M/MK/MKUTTER/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	45d6679daac03fe4eb604a5b5f416fd5
+# Source0-md5:	fd71a0c0feff85f670ab4b2e571652a8
 Patch0:		%{name}-warnings.patch
 Patch1:		%{name}-pod.patch
 URL:		http://www.soaplite.com/
@@ -29,7 +28,6 @@ BuildRequires:	perl-IO-Socket-SSL
 BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-MIME-Lite
 BuildRequires:	perl-MIME-tools
-BuildRequires:	perl-Net-Jabber
 BuildRequires:	perl-URI
 BuildRequires:	perl-libnet
 BuildRequires:	perl-libwww
@@ -64,30 +62,6 @@ HTTP transport support for SOAP::Lite (SOAP::Transport::HTTP).
 
 %description HTTP -l pl.UTF-8
 Obsługa transportu HTTP dla SOAP::Lite (SOAP::Transport::HTTP).
-
-%package JABBER
-Summary:	Net::Jabber support for SOAP::Lite
-Summary(pl.UTF-8):	Obsługa Net::Jabber dla SOAP::Lite
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}-%{release}
-
-%description JABBER
-JABBER transport support for SOAP::Lite (SOAP::Transport::JABBER).
-
-%description JABBER -l pl.UTF-8
-Obsługa transportu JABBER dla SOAP::Lite (SOAP::Transport::JABBER).
-
-%package MQ
-Summary:	MQ transport support for SOAP::Lite (SOAP::Transport::MQ)
-Summary(pl.UTF-8):	Obsługa transportu MQ dla SOAP::Lite (SOAP::Transport::MQ)
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}-%{release}
-
-%description MQ
-MQ transport support for SOAP::Lite (SOAP::Transport::MQ).
-
-%description MQ -l pl.UTF-8
-Obsługa transportu MQ dla SOAP::Lite (SOAP::Transport::MQ).
 
 %package examples
 Summary:	SOAP::Lite - examples
@@ -144,8 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/SOAP/Lite/Deserializer/*.pm
 %dir %{perl_vendorlib}/SOAP/Transport
 %{perl_vendorlib}/SOAP/Transport/*.pm
-%exclude %{perl_vendorlib}/SOAP/Transport/JABBER.pm
-%exclude %{perl_vendorlib}/SOAP/Transport/MQ.pm
 %exclude %{perl_vendorlib}/SOAP/Transport/HTTP.pm
 %dir %{perl_vendorlib}/UDDI
 %{perl_vendorlib}/UDDI/*.pm
@@ -158,24 +130,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/UDDI*
 %{_mandir}/man3/XML*
 %{_mandir}/man3/SOAP*
-%if %{with MQ}
-%exclude %{_mandir}/man3/*::MQ.*
-%endif
 
 %files HTTP
 %defattr(644,root,root,755)
 %{perl_vendorlib}/SOAP/Transport/HTTP.pm
-
-%if %{with MQ}
-%files MQ
-%defattr(644,root,root,755)
-%{perl_vendorlib}/SOAP/Transport/MQ.pm
-%{_mandir}/man3/*::MQ.*
-%endif
-
-%files JABBER
-%defattr(644,root,root,755)
-%{perl_vendorlib}/SOAP/Transport/JABBER.pm
 
 %files examples
 %defattr(644,root,root,755)
