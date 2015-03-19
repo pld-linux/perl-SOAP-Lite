@@ -1,6 +1,7 @@
---- SOAP-Lite-0.71/lib/SOAP/Lite.pm~	2008-02-28 23:27:27.000000000 +0200
-+++ SOAP-Lite-0.71/lib/SOAP/Lite.pm	2008-06-05 12:33:31.827683476 +0300
-@@ -4225,6 +4225,7 @@
+diff -ruN SOAP-Lite-1.13.orig/lib/SOAP/Lite.pm SOAP-Lite-1.13/lib/SOAP/Lite.pm
+--- SOAP-Lite-1.13.orig/lib/SOAP/Lite.pm	2014-12-30 16:48:04.000000000 +0100
++++ SOAP-Lite-1.13/lib/SOAP/Lite.pm	2015-03-19 01:51:24.951309918 +0100
+@@ -4367,6 +4367,7 @@
  the following code:
  
      $client->on_action( sub { join '/', @_ } );

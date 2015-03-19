@@ -8,13 +8,13 @@
 Summary:	SOAP::Lite - Client and server side SOAP implementation
 Summary(pl.UTF-8):	SOAP::Lite - implementacja SOAP po stronie klienta i serwera
 Name:		perl-SOAP-Lite
-Version:	0.714
+Version:	1.13
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://search.cpan.org/CPAN/authors/id/M/MK/MKUTTER/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	4a3e8990fde047e11bea6771a7174c23
+Source0:	http://search.cpan.org/CPAN/authors/id/P/PH/PHRED/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	a743e386947f6e93ca81ee557ddee264
 Patch0:		%{name}-warnings.patch
 Patch1:		%{name}-pod.patch
 URL:		http://www.soaplite.com/
@@ -34,11 +34,12 @@ BuildRequires:	perl-libwww
 %endif
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+Obsoletes:	perl-SOAP-Transport-TCP
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # optional
-%define		_noautoreq	'perl(SOAP::Transport::HTTP)'
+%define		_noautoreq_perl	SOAP::Transport::HTTP IO::SessionSet IO::SessionData
 
 %description
 SOAP::Lite is a collection of Perl modules which provides a simple and
@@ -108,9 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Changes README
 %{perl_vendorlib}/Apache/*.pm
-%dir %{perl_vendorlib}/Apache/XMLRPC
-%{perl_vendorlib}/Apache/XMLRPC/*.pm
-%{perl_vendorlib}/IO/*.pm
 %{perl_vendorlib}/SOAP/*.pm
 %dir %{perl_vendorlib}/SOAP/Lite
 %{perl_vendorlib}/SOAP/Lite/*.pm
@@ -119,16 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorlib}/SOAP/Transport
 %{perl_vendorlib}/SOAP/Transport/*.pm
 %exclude %{perl_vendorlib}/SOAP/Transport/HTTP.pm
-%dir %{perl_vendorlib}/UDDI
-%{perl_vendorlib}/UDDI/*.pm
-%{perl_vendorlib}/XML/Parser/*.pm
-%dir %{perl_vendorlib}/XMLRPC
-%{perl_vendorlib}/XMLRPC/*.pm
-%dir %{perl_vendorlib}/XMLRPC/Transport
-%{perl_vendorlib}/XMLRPC/Transport/*.pm
 %{_mandir}/man3/Apache*
-%{_mandir}/man3/UDDI*
-%{_mandir}/man3/XML*
 %{_mandir}/man3/SOAP*
 
 %files HTTP

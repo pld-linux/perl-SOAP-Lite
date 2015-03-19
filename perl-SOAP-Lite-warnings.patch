@@ -1,6 +1,7 @@
---- SOAP-Lite-0.710.10/lib/SOAP/Transport/HTTP.pm.orig	2009-10-09 14:36:37.000000000 +0200
-+++ SOAP-Lite-0.710.10/lib/SOAP/Transport/HTTP.pm	2009-09-30 20:34:59.000000000 +0200
-@@ -38,13 +38,14 @@
+diff -ruN SOAP-Lite-1.13.orig/lib/SOAP/Transport/HTTP.pm SOAP-Lite-1.13/lib/SOAP/Transport/HTTP.pm
+--- SOAP-Lite-1.13.orig/lib/SOAP/Transport/HTTP.pm	2014-12-30 16:48:04.000000000 +0100
++++ SOAP-Lite-1.13/lib/SOAP/Transport/HTTP.pm	2015-03-19 01:53:24.669732344 +0100
+@@ -36,14 +36,15 @@
      return if $_patched;
      BEGIN { local ($^W) = 0; }
      {
@@ -11,7 +12,8 @@
      }
      {
 -
-         package LWP::Protocol;
+         package
+             LWP::Protocol;
 +        no warnings "redefine";
          local $^W = 0;
          my $collect = \&collect;    # store original
