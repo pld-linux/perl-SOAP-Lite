@@ -1,7 +1,6 @@
 # Conditional build:
 %bcond_with	tests	# perform "make test"
 #
-%include	/usr/lib/rpm/macros.perl
 %define		pdir	SOAP
 %define		pnam	Lite
 %define		real_version	%(echo %{version} | sed 's/[a-zA-Z]//')
