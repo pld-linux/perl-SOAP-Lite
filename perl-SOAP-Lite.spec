@@ -75,7 +75,7 @@ Przykłady użycia SOAP::Lite.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{real_version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__perl} -MExtUtils::MakeMaker -e 'WriteMakefile(NAME=>"SOAP::Lite")' \
